@@ -1,5 +1,4 @@
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import BackLink from "../components/BackLink";
 
 export default function Booking() {
   return (
@@ -10,9 +9,7 @@ export default function Booking() {
           <p>Need a DJ? Our team is available for booking.</p>
           <p>Shoot us a quick email at <a href="mailto:ab4386@princeton.edu" className="text-blue-600">ab4386@princeton.edu</a>.</p>
         </div>
-        <Link href="/">
-          <ArrowLongLeftIcon className="w-8 h-8" />
-        </Link>
+        <BackLink />
       </div>
     </div>
   );

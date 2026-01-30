@@ -1,5 +1,4 @@
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
+import BackLink from "../components/BackLink";
 
 export default function Education() {
   return (
@@ -20,9 +19,7 @@ export default function Education() {
             We meet weekly on Thursdays at 6:00pm in JRR A98 starting <u>Feb 5, 2026</u>. Equipment provided.
           </p>
         </div>
-        <Link href="/">
-          <ArrowLongLeftIcon className="w-8 h-8" />
-        </Link>
+        <BackLink />
       </div>
     </div>
   );

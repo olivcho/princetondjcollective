@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { animate } from "animejs";
 import Image from "next/image";
 
 interface Mix {
@@ -23,9 +22,6 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
   const [isDragging, setIsDragging] = useState(false);
   
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const glowAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
-  const sliderAnimationRef = useRef<ReturnType<typeof animate> | null>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
   const sliderContainerRef = useRef<HTMLDivElement>(null);
 
   // Format time as M:SS
@@ -109,46 +105,12 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
     setIsDragging(false);
   };
 
-  // Slider pulse animation when playing
-  useEffect(() => {
-    if (sliderAnimationRef.current) {
-      sliderAnimationRef.current.pause();
-    }
-
-    if (isPlaying && progressRef.current) {
-      sliderAnimationRef.current = animate(progressRef.current, {
-        boxShadow: [
-          "0 0 5px #ff6b6b, 0 0 10px #ff6b6b",
-          "0 0 8px #feca57, 0 0 15px #feca57",
-          "0 0 5px #48dbfb, 0 0 10px #48dbfb",
-          "0 0 8px #ff9ff3, 0 0 15px #ff9ff3",
-          "0 0 5px #ff6b6b, 0 0 10px #ff6b6b",
-        ],
-        duration: 2000,
-        ease: "linear",
-        loop: true,
-      });
-    }
-
-    return () => {
-      if (sliderAnimationRef.current) {
-        sliderAnimationRef.current.pause();
-      }
-    };
-  }, [isPlaying]);
-
   // Cleanup audio on unmount (when leaving page)
   useEffect(() => {
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
         audioRef.current = null;
-      }
-      if (glowAnimationRef.current) {
-        glowAnimationRef.current.pause();
-      }
-      if (sliderAnimationRef.current) {
-        sliderAnimationRef.current.pause();
       }
     };
   }, []);
@@ -211,7 +173,6 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
             onMouseLeave={handleDragEnd}
           >
             <div
-              ref={progressRef}
               className="h-full bg-neutral-800 rounded-full transition-all duration-100"
               style={{ width: `${progressPercentage}%` }}
             />

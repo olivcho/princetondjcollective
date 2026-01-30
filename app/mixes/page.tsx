@@ -1,7 +1,6 @@
-import { ArrowLongLeftIcon } from "@heroicons/react/24/solid";
-import Link from "next/link";
 import { supabase } from "../utils/supabase";
 import MixesPlayer from "./MixesPlayer";
+import BackLink from "../components/BackLink";
 
 export default async function Mixes() {
 
@@ -21,9 +20,7 @@ export default async function Mixes() {
                 
                 <MixesPlayer mixes={mixes} />
                 
-                <Link href="/">
-                    <ArrowLongLeftIcon className="w-8 h-8" />
-                </Link>
+                <BackLink />
             </div>
         </div>
     );

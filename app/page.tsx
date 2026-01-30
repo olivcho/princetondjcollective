@@ -1,7 +1,6 @@
 'use client';
+
 import Header from "./components/header";
-import { animate, splitText, stagger } from 'animejs';
-import { useEffect } from 'react';
 import Marquee from "react-fast-marquee";
 
 export default function Home() {
@@ -25,31 +24,8 @@ export default function Home() {
     </span>
   );
 
-  useEffect(() => {
-
-    const hasAnimated = sessionStorage.getItem('hasAnimated');
-
-    if (hasAnimated) return;
-
-    const { words } = splitText('.animate-text', {
-      words: { wrap: 'clip' },
-    });
-
-    animate(words, {
-      y: [
-        { to: ['100%', '0%'] },
-      ],
-      duration: 750,
-      ease: 'out(3)',
-      delay: stagger(25),
-      loop: false,
-    });
-
-    sessionStorage.setItem('hasAnimated', 'true');
-  }, []);
-
   return (
-    <div className="flex h-screen items-center justify-center bg-transparent animate-text overflow-hidden">
+    <div className="flex h-screen items-center justify-center bg-transparent overflow-hidden">
       <div className="flex flex-col items-center justify-center gap-12">
         <Header />
         <p className="text-xl md:text-2xl font-bold px-10 md:px-16">We're Princeton's premier student DJ collective.</p>

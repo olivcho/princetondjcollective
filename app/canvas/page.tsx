@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import BackLink from '../components/BackLink';
 
 interface MediaFile {
   key: string;
@@ -70,6 +71,9 @@ export default function CanvasPage() {
             )}
           </div>
         ))}
+      </div>
+      <div className="fixed bottom-8 left-1/2 -translate-x-1/2">
+        <BackLink />
       </div>
     </div>
   );

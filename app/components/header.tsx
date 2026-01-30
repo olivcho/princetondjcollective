@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { TransitionLink } from "./PageTransition";
 
 export default function Header() {
 
@@ -8,10 +8,10 @@ export default function Header() {
     <header>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-12 font-bold">
-          <Link href="/canvas"><u>Canvas</u></Link>
-          <Link href="/education"><u>Education</u></Link>
-          <Link href="/mixes"><u>Mixes</u></Link>
-          <Link href="/booking"><u>Booking</u></Link>
+          <TransitionLink href="/canvas"><u>Canvas</u></TransitionLink>
+          <TransitionLink href="/education"><u>Education</u></TransitionLink>
+          <TransitionLink href="/mixes"><u>Mixes</u></TransitionLink>
+          <TransitionLink href="/booking"><u>Booking</u></TransitionLink>
         </div>
       </div>
     </header>
