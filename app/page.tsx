@@ -2,7 +2,7 @@
 import Header from "./components/header";
 import { animate, splitText, stagger } from 'animejs';
 import { useEffect } from 'react';
-import TrailContainer from "./components/trailcontainer";
+import Marquee from "react-fast-marquee";
 
 export default function Home() {
   
@@ -18,6 +18,12 @@ export default function Home() {
     { firstName: "Asher", lastName: "Matthias", role: "Gig Team" },
     { firstName: "Tom", lastName: "Dubnov", role: "Gig Team" },
   ]
+
+  const teamNames = (
+    <span className="text-4xl md:text-6xl font-bold whitespace-nowrap">
+      {team.map((member) => member.firstName).join(' • ')} •&nbsp;
+    </span>
+  );
 
   useEffect(() => {
 
@@ -43,15 +49,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-transparent animate-text">
+    <div className="flex h-screen items-center justify-center bg-transparent animate-text overflow-hidden">
       <div className="flex flex-col items-center justify-center gap-12">
         <Header />
-        <p className="text-xl md:text-2xl font-bold px-10 md:px-16">Princeton's premier student DJ collective bringing the campus to life, one beat at a time.</p>
-        <p className="text-sm md:text-base px-10 md:px-16 text-left">
-          {team.map((member) => member.firstName).join(', ')}, and counting <a href="mailto:ab4386@princeton.edu?subject=Interested%20in%20Princeton%20DJ%20Collective" className="text-blue-600">(join us)</a>.
-        </p>
+        <p className="text-xl md:text-2xl font-bold px-10 md:px-16">We're Princeton's premier student DJ collective.</p>
+        <div className="">
+          <Marquee autoFill={true} speed={67} className="overflow-hidden">
+            {teamNames}
+          </Marquee>
+        </div>
       </div>
-      <TrailContainer />
     </div>
   );
 }

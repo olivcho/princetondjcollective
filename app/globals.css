@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 body {
-  background-color: #fffef4;
-  color: #171717;
+  background-color: #171717;
+  color: #fffef4;
 }
 
 @keyframes fadeIn {
