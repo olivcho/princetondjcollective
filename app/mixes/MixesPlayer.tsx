@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { animate } from "animejs";
+import Image from "next/image";
 
 interface Mix {
   id: string;
@@ -157,30 +158,43 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
   return (
     <div className="flex flex-col items-center gap-8 w-full max-w-3xl px-8 md:px-0">
       {/* Track List */}
-      <div className="flex flex-col items-start gap-4 w-full text-base md:text-lg font-bold">
-        {mixes.map((mix) => (
-          <button
-            key={mix.id}
-            data-track-id={mix.id}
-            onClick={() => handleTrackClick(mix)}
-            className={`
-              text-left transition-all duration-200 cursor-pointer
-              hover:opacity-80 focus:outline-none
-              ${currentTrack === mix.id && isPlaying ? "text-inherit" : ""}
-              ${currentTrack === mix.id && !isPlaying ? "opacity-60" : ""}
-            `}
-            style={{
-              textShadow: currentTrack === mix.id && !isPlaying 
-                ? "0 0 5px rgba(100, 100, 100, 0.5)" 
-                : "none"
-            }}
-          >
-            {currentTrack === mix.id && (
-              <span className="mr-2">▶</span>
-            )}
-            {mix.track_name}
-          </button>
-        ))}
+      <div className="flex flex-row justify-between w-full">
+        <div className="flex flex-col items-start gap-4 text-base md:text-lg font-bold">
+          {mixes.map((mix) => (
+            <button
+              key={mix.id}
+              data-track-id={mix.id}
+              onClick={() => handleTrackClick(mix)}
+              className={`
+                text-left transition-all duration-200 cursor-pointer
+                hover:opacity-80 focus:outline-none
+                ${currentTrack === mix.id && isPlaying ? "text-inherit" : ""}
+                ${currentTrack === mix.id && !isPlaying ? "opacity-60" : ""}
+              `}
+              style={{
+                textShadow: currentTrack === mix.id && !isPlaying 
+                  ? "0 0 5px rgba(100, 100, 100, 0.5)" 
+                  : "none"
+              }}
+            >
+              {currentTrack === mix.id && (
+                <span className="mr-2">▶</span>
+              )}
+              {mix.track_name}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center justify-center">
+          <Image
+            src="/vinyl_record.png"
+            alt="Vinyl Record"
+            width={250}
+            height={250}
+            className={`w-40 h-40 md:w-64 md:h-64 animate-spin ${isPlaying ? "" : "[animation-play-state:paused]"}`}
+            style={{ animationDuration: "2s" }}
+            sizes="(max-width: 768px) 10rem, 16rem"
+          />
+        </div>
       </div>
 
       {/* Audio Player Controls */}

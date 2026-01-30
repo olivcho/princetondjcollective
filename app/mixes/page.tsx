@@ -10,11 +10,9 @@ export default async function Mixes() {
                                         .select('*')
                                         .order('month', { ascending: false });
 
-    if (error) {
-      console.error(error);
-    }
-
     const mixes = data || [];
+
+
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-transparent py-12">

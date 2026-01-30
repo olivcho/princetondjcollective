@@ -2,6 +2,7 @@
 import Header from "./components/header";
 import { animate, splitText, stagger } from 'animejs';
 import { useEffect } from 'react';
+import TrailContainer from "./components/trailcontainer";
 
 export default function Home() {
   
@@ -50,6 +51,7 @@ export default function Home() {
           {team.map((member) => member.firstName).join(', ')}, and counting <a href="mailto:ab4386@princeton.edu?subject=Interested%20in%20Princeton%20DJ%20Collective" className="text-blue-600">(join us)</a>.
         </p>
       </div>
+      <TrailContainer />
     </div>
   );
 }
