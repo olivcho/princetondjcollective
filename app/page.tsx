@@ -25,8 +25,19 @@ export default function Home() {
   );
 
   return (
-    <div className="flex h-screen items-center justify-center bg-transparent overflow-hidden">
-      <div className="flex flex-col items-center justify-center gap-12">
+    <div className="relative flex h-screen items-center justify-center bg-transparent overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-3 -z-10"
+      >
+        <source src="/princetondjvid.mp4" type="video/mp4" />
+      </video>
+      
+      <div className="flex flex-col items-center justify-center gap-12 z-10">
         <Header />
         <p className="text-xl md:text-2xl font-bold px-10 md:px-16">We're Princeton's premier student DJ collective.</p>
         <div className="">
