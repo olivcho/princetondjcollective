@@ -29,7 +29,7 @@ export default function Home() {
         muted
         loop
         playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-5 -z-10"
+        className="absolute inset-0 w-full h-full object-cover opacity-10 -z-10"
       >
         <source src="/princetondjvid.mp4" type="video/mp4" />
       </video>
@@ -40,7 +40,7 @@ export default function Home() {
           <p className="text-3xl md:text-4xl font-bold text-center">
             We're Princeton's premier student DJ collective.
           </p>
-          <p className="text-sm md:text-xl max-w-3xl mx-auto">
+          <p className="text-sm md:text-xl max-w-3xl mx-auto text-center">
             We're dedicated to cultivating a vibrant music culture on campus. We offer a free beginner-friendly education program teaching DJ fundamentals, connect club members to our exclusive campus-wide gig network, and foster a supportive community of music lovers and creators. Our mission is to democratize access to DJ culture and empower student DJs to bring the campus to life, one beat at a time.
           </p>
         </div>

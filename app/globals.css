@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+:root {
+  --princeton-orange: #E87722;
+}
+
 body {
   background-color: #171717;
   color: #fffef4;

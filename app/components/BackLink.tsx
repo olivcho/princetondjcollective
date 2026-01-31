@@ -6,7 +6,7 @@ import { TransitionLink } from "./PageTransition";
 export default function BackLink() {
   return (
     <TransitionLink href="/">
-      <ArrowLongLeftIcon className="w-8 h-8" />
+      <ArrowLongLeftIcon className="w-8 h-8 transition-colors duration-200 hover:text-[var(--princeton-orange)]" />
     </TransitionLink>
   );
 }

@@ -129,9 +129,9 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
               onClick={() => handleTrackClick(mix)}
               className={`
                 text-left transition-all duration-200 cursor-pointer
-                hover:opacity-80 focus:outline-none
-                ${currentTrack === mix.id && isPlaying ? "text-inherit" : ""}
-                ${currentTrack === mix.id && !isPlaying ? "opacity-60" : ""}
+                transition-colors duration-200 hover:text-[var(--princeton-orange)] focus:outline-none
+                ${currentTrack === mix.id && isPlaying ? "text-[var(--princeton-orange)]" : ""}
+                ${currentTrack === mix.id && !isPlaying ? "text-[var(--princeton-orange)] opacity-60" : ""}
               `}
               style={{
                 textShadow: currentTrack === mix.id && !isPlaying 
