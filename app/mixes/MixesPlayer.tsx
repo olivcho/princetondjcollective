@@ -129,31 +129,45 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
               onClick={() => handleTrackClick(mix)}
               className={`
                 text-left transition-all duration-200 cursor-pointer
-                transition-colors duration-200 hover:text-[var(--princeton-orange)] focus:outline-none
-                ${currentTrack === mix.id && isPlaying ? "text-[var(--princeton-orange)]" : ""}
+                hover:text-[var(--princeton-orange)] hover:translate-x-2 hover:scale-105 focus:outline-none
+                ${currentTrack === mix.id && isPlaying ? "text-[var(--princeton-orange)] translate-x-2" : ""}
                 ${currentTrack === mix.id && !isPlaying ? "text-[var(--princeton-orange)] opacity-60" : ""}
               `}
               style={{
-                textShadow: currentTrack === mix.id && !isPlaying 
-                  ? "0 0 5px rgba(100, 100, 100, 0.5)" 
+                textShadow: currentTrack === mix.id && isPlaying
+                  ? "0 0 10px rgba(232, 119, 34, 0.6)"
+                  : currentTrack === mix.id && !isPlaying
+                  ? "0 0 5px rgba(100, 100, 100, 0.5)"
+                  : "none",
+                filter: currentTrack === mix.id && isPlaying
+                  ? "drop-shadow(0 0 8px rgba(232, 119, 34, 0.4))"
                   : "none"
               }}
             >
               {currentTrack === mix.id && (
-                <span className="mr-2">▶</span>
+                <span className={`mr-2 inline-block ${isPlaying ? "animate-pulse" : ""}`}>▶</span>
               )}
               {mix.track_name}
             </button>
           ))}
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center relative">
+          {/* Glow effect when playing */}
+          {isPlaying && (
+            <div className="absolute inset-0 w-40 h-40 md:w-64 md:h-64 bg-[var(--princeton-orange)] rounded-full blur-3xl opacity-20 animate-pulse-fast" />
+          )}
           <Image
             src="/vinyl_record.png"
             alt="Vinyl Record"
             width={250}
             height={250}
-            className={`w-40 h-40 md:w-64 md:h-64 animate-spin ${isPlaying ? "" : "[animation-play-state:paused]"}`}
-            style={{ animationDuration: "2s" }}
+            className={`w-40 h-40 md:w-64 md:h-64 animate-spin transition-all duration-300 ${
+              isPlaying ? "scale-105" : "[animation-play-state:paused] scale-100"
+            }`}
+            style={{
+              animationDuration: "2s",
+              filter: isPlaying ? "drop-shadow(0 0 20px rgba(232, 119, 34, 0.4))" : "none"
+            }}
             sizes="(max-width: 768px) 10rem, 16rem"
           />
         </div>
