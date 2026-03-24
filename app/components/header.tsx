@@ -46,14 +46,14 @@ export default function Header() {
         <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[7px]" : ""}`} />
       </button>
 
-      {/* Mobile full-screen menu */}
-      <div className={`md:hidden fixed inset-0 bg-black/95 z-40 flex flex-col items-center justify-center gap-10 transition-all duration-300 ${menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}>
+      {/* Mobile dropdown menu */}
+      <div className={`md:hidden fixed top-[56px] left-0 right-0 z-40 glass-nav border-t border-white/10 flex flex-col transition-all duration-300 overflow-hidden ${menuOpen ? "max-h-96 opacity-100 pointer-events-auto" : "max-h-0 opacity-0 pointer-events-none"}`}>
         {navLinks.map(({ href, label }) => (
           <TransitionLink
             key={href}
             href={href}
             onClick={() => setMenuOpen(false)}
-            className="text-2xl font-bold tracking-widest uppercase hover:text-[var(--princeton-orange)] transition-colors duration-200"
+            className="px-6 py-4 text-sm font-bold tracking-widest uppercase hover:text-[var(--princeton-orange)] hover:bg-white/5 transition-colors duration-200 border-b border-white/5"
           >
             {label}
           </TransitionLink>
