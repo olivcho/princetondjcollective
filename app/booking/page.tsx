@@ -8,12 +8,12 @@ export default function Booking() {
         <source src="/princetondjvid.mp4" type="video/mp4" />
       </video>
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 }} />
-      <div style={{ position: 'relative', zIndex: 2 }} className="flex min-h-screen items-center justify-center">
-        <div className="flex flex-col items-center justify-center gap-12">
-          <p className="text-xl md:text-2xl font-bold px-10 md:px-16">Booking</p>
-          <div className="flex flex-col items-center gap-6 max-w-3xl text-base md:text-lg px-8 md:px-0 text-center font-bold">
+      <div style={{ position: 'relative', zIndex: 2 }} className="flex min-h-screen items-center justify-center py-24 px-6">
+        <div className="flex flex-col items-center justify-center gap-8 md:gap-12 w-full max-w-3xl text-center">
+          <p className="text-xl md:text-2xl font-bold">Booking</p>
+          <div className="flex flex-col items-center gap-5 text-sm md:text-lg font-bold">
             <p>Need a DJ? We&apos;re an email away.</p>
-            <p>Ping us with event details at <a href="mailto:ab4386@princeton.edu" className="text-blue-600">ab4386@princeton.edu</a>.</p>
+            <p>Ping us with event details at <a href="mailto:ab4386@princeton.edu" className="text-[var(--princeton-orange)] underline">ab4386@princeton.edu</a>.</p>
           </div>
           <BackLink />
         </div>

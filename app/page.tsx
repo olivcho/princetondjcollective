@@ -12,12 +12,19 @@ interface MediaFile {
 
 export default function Home() {
   const [files, setFiles] = useState<MediaFile[]>([]);
+  const [cols, setCols] = useState(3);
 
   useEffect(() => {
     fetch('/api/files')
       .then(r => r.json())
       .then(data => { if (data.files?.length) setFiles(data.files); })
       .catch(() => {});
+
+    // Responsive columns
+    const updateCols = () => setCols(window.innerWidth < 640 ? 2 : 3);
+    updateCols();
+    window.addEventListener('resize', updateCols);
+    return () => window.removeEventListener('resize', updateCols);
   }, []);
 
   const team = [
@@ -31,8 +38,8 @@ export default function Home() {
     <div style={{ background: '#000' }}>
 
       {/* Fixed text — stays centered on screen while scrolling */}
-      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, pointerEvents: 'none', width: '100%', padding: '0 2rem' }}>
-        <p className="text-base md:text-lg max-w-2xl mx-auto text-center text-white/80 leading-relaxed">
+      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, pointerEvents: 'none', width: '100%', padding: '0 1.5rem' }}>
+        <p className="text-sm md:text-lg max-w-2xl mx-auto text-center text-white/80 leading-relaxed">
           We&apos;re dedicated to cultivating a vibrant music culture on campus. We offer a free beginner-friendly education program teaching DJ fundamentals, connect club members to our exclusive campus-wide gig network, and foster a supportive community of music lovers and creators. Our mission is to democratize access to DJ culture and empower student DJs to bring the campus to life, one beat at a time.
         </p>
       </div>
@@ -64,7 +71,7 @@ export default function Home() {
         <div style={{ position: 'relative', zIndex: 1, background: '#000' }}>
 
           {/* Canvas photos */}
-          <div style={{ columns: '3', columnGap: '3px', padding: '3px' }}>
+          <div style={{ columns: cols, columnGap: '3px', padding: '3px' }}>
             {files.map((file) => (
               <div key={file.key} style={{ breakInside: 'avoid', marginBottom: '3px' }}>
                 {file.isVideo ? (

@@ -27,9 +27,9 @@ export default async function Mixes() {
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 }} />
 
       {/* Content */}
-      <div style={{ position: 'relative', zIndex: 2 }} className="flex min-h-screen items-center justify-center py-12">
-        <div className="flex flex-col items-center justify-center gap-12 w-full">
-          <p className="text-xl md:text-2xl font-bold px-10 md:px-16">Mixes</p>
+      <div style={{ position: 'relative', zIndex: 2 }} className="flex min-h-screen items-center justify-center py-24 px-6">
+        <div className="flex flex-col items-center justify-center gap-10 md:gap-12 w-full">
+          <p className="text-xl md:text-2xl font-bold">Mixes</p>
 
           <MixesPlayer mixes={mixes} />
 
