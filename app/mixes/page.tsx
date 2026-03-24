@@ -14,18 +14,28 @@ const mixes = [
 ];
 
 export default async function Mixes() {
+  return (
+    <div style={{ position: 'relative', minHeight: '100vh', background: '#000', overflow: 'hidden' }}>
 
+      {/* Video background */}
+      <video autoPlay muted loop playsInline
+        style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
+        <source src="/princetondjvid.mp4" type="video/mp4" />
+      </video>
 
+      {/* Dark overlay */}
+      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 }} />
 
-    return (
-        <div className="flex min-h-screen items-center justify-center bg-transparent py-12">
-            <div className="flex flex-col items-center justify-center gap-12 w-full">
-                <p className="text-xl md:text-2xl font-bold px-10 md:px-16">Mixes</p>
-                
-                <MixesPlayer mixes={mixes} />
-                
-                <BackLink />
-            </div>
+      {/* Content */}
+      <div style={{ position: 'relative', zIndex: 2 }} className="flex min-h-screen items-center justify-center py-12">
+        <div className="flex flex-col items-center justify-center gap-12 w-full">
+          <p className="text-xl md:text-2xl font-bold px-10 md:px-16">Mixes</p>
+
+          <MixesPlayer mixes={mixes} />
+
+          <BackLink />
         </div>
-    );
+      </div>
+    </div>
+  );
 }

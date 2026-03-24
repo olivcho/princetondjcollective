@@ -120,8 +120,15 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
   return (
     <div className="flex flex-col items-center gap-8 w-full max-w-3xl px-8 md:px-0">
       {/* Track List */}
-      <div className="flex flex-row justify-between w-full">
-        <div className="flex flex-col items-start gap-4 text-base md:text-lg font-bold">
+      <div className="flex flex-row justify-between w-full gap-24">
+        <div className="flex flex-col items-start gap-4 text-base md:text-lg font-bold"
+          style={{
+            background: 'rgba(0,0,0,0.45)',
+            backdropFilter: 'blur(12px)',
+            borderRadius: '14px',
+            padding: '1.5rem 2rem',
+            border: '1px solid rgba(255,255,255,0.1)',
+          }}>
           {mixes.map((mix) => (
             <button
               key={mix.id}

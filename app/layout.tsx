@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
-import PageTransition from "./components/PageTransition";
+import PageTransition, { TransitionProvider } from "./components/PageTransition";
 import BackgroundAudio from "./components/BackgroundAudio";
 import Header from "./components/header";
 
@@ -23,9 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={playfair_display.className}>
       <body className="antialiased">
-        <BackgroundAudio />
-        <Header />
-        <PageTransition>{children}</PageTransition>
+        <TransitionProvider>
+          <BackgroundAudio />
+          <Header />
+          <PageTransition>{children}</PageTransition>
+        </TransitionProvider>
       </body>
     </html>
   );

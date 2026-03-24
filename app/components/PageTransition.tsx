@@ -22,22 +22,16 @@ export function usePageTransition() {
   return useContext(TransitionContext);
 }
 
-export default function PageTransition({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function TransitionProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [isVisible, setIsVisible] = useState(false);
   const [pendingHref, setPendingHref] = useState<string | null>(null);
 
-  // Fade in when route changes
   useEffect(() => {
     setIsVisible(true);
   }, [pathname]);
 
-  // Handle the transition out then navigate
   const startTransition = useCallback(
     (href: string) => {
       if (href === pathname) return;
@@ -47,7 +41,6 @@ export default function PageTransition({
     [pathname]
   );
 
-  // Navigate after fade-out completes
   useEffect(() => {
     if (!isVisible && pendingHref) {
       const timer = setTimeout(() => {
@@ -60,16 +53,27 @@ export default function PageTransition({
 
   return (
     <TransitionContext.Provider value={{ startTransition }}>
-      <div
-        className="page-transition"
-        style={{
-          opacity: isVisible ? 1 : 0,
-          transition: "opacity 0.25s ease-out",
-        }}
-      >
-        {children}
-      </div>
+      {children}
     </TransitionContext.Provider>
+  );
+}
+
+export default function PageTransition({ children }: { children: React.ReactNode }) {
+  const { startTransition } = usePageTransition();
+  const pathname = usePathname();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, [pathname]);
+
+  return (
+    <div
+      className="page-transition"
+      style={{ opacity: isVisible ? 1 : 0, transition: "opacity 0.25s ease-out" }}
+    >
+      {children}
+    </div>
   );
 }
 
