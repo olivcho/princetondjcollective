@@ -1,64 +1,98 @@
 'use client';
 
-import Header from "./components/header";
+import { useEffect, useState } from 'react';
 import Marquee from "react-fast-marquee";
 
+interface MediaFile {
+  key: string;
+  name: string;
+  url: string;
+  isVideo: boolean;
+}
+
 export default function Home() {
-  
+  const [files, setFiles] = useState<MediaFile[]>([]);
+
+  useEffect(() => {
+    fetch('/api/files')
+      .then(r => r.json())
+      .then(data => { if (data.files?.length) setFiles(data.files); })
+      .catch(() => {});
+  }, []);
+
   const team = [
-    { firstName: "Abhi", lastName: "Bansal", role: "President" },
-    { firstName: "Rohan", lastName: "Pahwa", role: "Co-President" },
-    { firstName: "Steven", lastName: "Goetz", role: "Co-President" },
-    { firstName: "Sebastian", lastName: "Merkatz", role: "Treasurer" },
-    { firstName: "Katie", lastName: "Lee", role: "Social Media" },
-    { firstName: "Oliver", lastName: "Cho", role: "Software" },
-    { firstName: "Vinayak", lastName: "Menon", role: "Gig Team" },
-    { firstName: "Mateo", lastName: "Hoyos", role: "Gig Team" },
-    { firstName: "Asher", lastName: "Matthias", role: "Gig Team" },
-    { firstName: "Tom", lastName: "Dubnov", role: "Gig Team" },
-  ]
-
-
-  const teamNames = team.map((member) => member.firstName).join(' • ') + ' •\u00A0';
+    "Abhi Bansal", "Rohan Pahwa", "Steven Goetz", "Sebastian Merkatz",
+    "Katie Lee", "Oliver Cho", "Vinayak Menon", "Mateo Hoyos",
+    "Asher Matthias", "Tom Dubnov",
+  ];
+  const teamNames = team.map(n => `${n}  ·  `).join('');
 
   return (
-    <div className="relative flex h-screen items-center justify-center bg-transparent overflow-hidden">
-      {/* Video Background with Enhanced Visibility */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover opacity-15 -z-10 animate-subtle-zoom"
-      >
-        <source src="/princetondjvid.mp4" type="video/mp4" />
-      </video>
+    <div style={{ background: '#000' }}>
 
-      {/* Gradient Overlay for Depth */}
-      <div className="absolute inset-0 bg-gradient-radial from-transparent via-[#171717]/40 to-[#171717] -z-10" />
+      {/* Fixed text — stays centered on screen while scrolling */}
+      <div style={{ position: 'fixed', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 10, pointerEvents: 'none', width: '100%', padding: '0 2rem' }}>
+        <p className="text-base md:text-lg max-w-2xl mx-auto text-center text-white/80 leading-relaxed">
+          We&apos;re dedicated to cultivating a vibrant music culture on campus. We offer a free beginner-friendly education program teaching DJ fundamentals, connect club members to our exclusive campus-wide gig network, and foster a supportive community of music lovers and creators. Our mission is to democratize access to DJ culture and empower student DJs to bring the campus to life, one beat at a time.
+        </p>
+      </div>
 
-      {/* Orange Glow Effects */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--princeton-orange)] rounded-full blur-[120px] opacity-10 animate-pulse-slow -z-10" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[var(--princeton-orange)] rounded-full blur-[120px] opacity-10 animate-pulse-slow animation-delay-2000 -z-10" />
+      {/* ── Section 1: Video (sticky, stays behind as canvas scrolls over) ── */}
+      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
+        <video autoPlay muted loop playsInline
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', zIndex: 0 }}>
+          <source src="https://utfs.io/f/jwgGLpqDRY3nKJrd4S2MoS684RynjEFslZgdvDmQO9te3ihp" type="video/mp4" />
+        </video>
 
-      <div className="flex flex-col items-center justify-center gap-12 z-10">
-        <div className="animate-fade-in-down">
-          <Header />
-        </div>
-        <div className="flex flex-col gap-4 px-10 md:px-16 animate-fade-in-up animation-delay-200">
-          <p className="text-3xl md:text-4xl font-bold text-center gradient-text-glow py-4">
-            We're Princeton's premier student DJ collective.
-          </p>
-          <p className="text-sm md:text-xl max-w-3xl mx-auto text-center leading-relaxed">
-            We're dedicated to cultivating a vibrant music culture on campus. We offer a free beginner-friendly education program teaching DJ fundamentals, connect club members to our exclusive campus-wide gig network, and foster a supportive community of music lovers and creators. Our mission is to democratize access to DJ culture and empower student DJs to bring the campus to life, one beat at a time.
-          </p>
-        </div>
-        <div className="text-1xl md:text-2xl font-bold animate-fade-in animation-delay-400">
-          <Marquee autoFill={true} speed={14} className="overflow-hidden py-2">
-            {teamNames}
-          </Marquee>
+        {/* Dark overlay */}
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.62)', zIndex: 1 }} />
+
+        {/* Hero content */}
+        <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
+          <div className="pb-8" style={{ marginTop: 'auto' }}>
+            <div className="border-t border-white/15 pt-5">
+              <Marquee autoFill speed={18} className="text-white/45 text-xs font-semibold tracking-widest uppercase">
+                <span className="pr-10">{teamNames}</span>
+              </Marquee>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* ── Section 2: Canvas slides over the video ── */}
+      {files.length > 0 && (
+        <div style={{ position: 'relative', zIndex: 1, background: '#000' }}>
+
+          {/* Canvas photos */}
+          <div style={{ columns: '3', columnGap: '3px', padding: '3px' }}>
+            {files.map((file) => (
+              <div key={file.key} style={{ breakInside: 'avoid', marginBottom: '3px' }}>
+                {file.isVideo ? (
+                  <video src={file.url} autoPlay muted loop playsInline
+                    style={{ width: '100%', height: 'auto', display: 'block' }} />
+                ) : (
+                  <img src={file.url} alt={file.name}
+                    style={{ width: '100%', height: 'auto', display: 'block' }} />
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Dark overlay on canvas */}
+          <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.75)', pointerEvents: 'none', zIndex: 1 }} />
+
+          {/* Marquee pinned to bottom of canvas section */}
+          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 2, paddingBottom: '2rem', pointerEvents: 'none' }}>
+            <div className="border-t border-white/15 pt-5">
+              <Marquee autoFill speed={18} className="text-white/45 text-xs font-semibold tracking-widest uppercase">
+                <span className="pr-10">{teamNames}</span>
+              </Marquee>
+            </div>
+          </div>
+
+        </div>
+      )}
+
     </div>
   );
 }

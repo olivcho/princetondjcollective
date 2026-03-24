@@ -149,6 +149,19 @@ body {
   background: radial-gradient(circle, var(--tw-gradient-stops));
 }
 
+/* Hero title - fluid large size */
+.hero-title {
+  font-size: clamp(3.5rem, 12vw, 11rem);
+}
+
+/* Frosted glass nav */
+.glass-nav {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 /* Cursor Trail Effect */
 .trail-container {
   position: fixed;
