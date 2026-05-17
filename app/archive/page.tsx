@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import BackLink from '../components/BackLink';
 import { listDriveFiles } from '../utils/googleDrive';
 import { getGigs } from '../utils/googleSheets';

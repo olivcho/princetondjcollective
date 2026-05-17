@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import BackLink from '../components/BackLink';
 import { getTeam } from '../utils/googleSheets';
 import TeamList from './TeamList';

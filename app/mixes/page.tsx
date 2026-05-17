@@ -1,3 +1,5 @@
+export const revalidate = 3600;
+
 import MixesPlayer from "./MixesPlayer";
 import BackLink from "../components/BackLink";
 import { listDriveFiles } from "../utils/googleDrive";
