@@ -1,4 +1,5 @@
 import BackLink from "../components/BackLink";
+import MailingListForm from "../components/MailingListForm";
 
 export default function Education() {
   return (
@@ -13,7 +14,7 @@ export default function Education() {
           <p className="text-xl md:text-2xl font-bold">Education</p>
           <div className="flex flex-col items-start gap-5 text-sm md:text-lg text-left font-bold">
             <p>
-              Our education program runs for 2 months, meeting once a week. Each session features a 20–30 minute lecture followed by a 30 minute hands-on segment in small breakout groups, giving you both the knowledge and practical experience to grow as a DJ.
+              Our education program runs for 2 months, meeting once a week. Each session features a 20–30 minute tutorial followed by a 30 minute hands-on segment in small breakout groups, giving you both the knowledge and practical experience to grow as a DJ.
             </p>
             <p>
               The program is open to all skill levels—whether you&apos;re a complete beginner or already have some experience, you&apos;ll find the right mix of challenge and support.
@@ -22,12 +23,12 @@ export default function Education() {
               At the end of the program, you&apos;ll have the opportunity to complete a skill assessment. Those who pass will be invited to join our &quot;gig group&quot; and perform at campus events.
             </p>
             <p>
-              We meet weekly on Thursdays at 6:00pm in JRR A98 starting <u>Feb 5, 2026</u>. Equipment provided.
+              Dates and times for Fall 2026 will be announced soon. In the meantime, sign up for our mailing list to stay updated.
             </p>
           </div>
+          <div style={{ marginTop: '-1rem', width: '100%' }}><MailingListForm /></div>
           <BackLink />
         </div>
-      </div>
-    </div>
+      </div>    </div>
   );
 }

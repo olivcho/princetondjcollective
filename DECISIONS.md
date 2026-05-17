@@ -45,6 +45,11 @@
 - Rejected: Paginating the tracklist; hiding overflow with no scroll (would make tracks unreachable).
 - Constraint: Long track names are truncated at 220px on mobile (`truncate max-w-[220px]`) and unrestricted on desktop. The 35vh cap is viewport-relative so it scales across phone sizes; on very short devices (e.g. iPhone SE) this may feel tight but still fits.
 
+## 2026-05-17: Mailing list form on homepage writes to Google Sheet
+- Reason: Non-devs need to see signups without touching code. The existing Google Sheets + service account infrastructure was already in place for gigs and team data.
+- Rejected: Mailchimp embed (extra third-party dependency); Supabase (already removed).
+- Constraint: `GOOGLE_SHEETS_MAILING_LIST_ID` must be set in `.env.local` and Vercel env vars to `1IOSq5_4qK-ZPw9nfNSiWUzgJBQS94v_YGeDekXi4Wt8`. The sheet must be shared with the service account. The googleSheets.ts auth scope was upgraded from `spreadsheets.readonly` to `spreadsheets` to allow appends. The form is a `'use client'` component (`MailingListForm.tsx`) mounted inside the `pointerEvents: none` homepage overlay — it sets `pointerEvents: auto` on itself.
+
 ---
 *Add an entry whenever a non-obvious decision is made.*
 *Format: date, what, why, what was rejected, ongoing constraint.*

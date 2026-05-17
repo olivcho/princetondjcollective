@@ -1,7 +1,7 @@
 # AGENTS.md
 
 ## Project Overview
-Princeton DJ Collective website — a Next.js 16 / React 19 / TypeScript app showcasing the club's team, mixes, booking contact, and education program. Media assets are hosted on UploadThing; Supabase is provisioned for future data needs. Deployed on Vercel.
+Princeton DJ Collective website — a Next.js 16 / React 19 / TypeScript app showcasing the club's team, mixes, booking contact, and education program. Media (images, video, audio) is served from Google Drive via a proxy route; team/gigs/mailing-list data is stored in Google Sheets. Deployed on Vercel.
 
 ## Quick Start
 - Setup: `make setup`
@@ -12,8 +12,8 @@ Princeton DJ Collective website — a Next.js 16 / React 19 / TypeScript app sho
 
 ## Verification Commands
 - Type check: `npx tsc --noEmit` (exits 0 = clean)
-- Lint: `npm run lint` (currently exits 1 — 2 known errors in PageTransition.tsx, see PROGRESS.md)
-- Build: `npm run build` (run manually; requires env vars NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, UPLOADTHING_SECRET)
+- Lint: `npm run lint` (currently passing; minor warning in api/files/route.ts — non-blocking)
+- Build: `npm run build` (run manually; requires env vars GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_DRIVE_MIXES_FOLDER_ID, GOOGLE_DRIVE_CANVAS_FOLDER_ID, GOOGLE_SHEETS_GIGS_ID, GOOGLE_SHEETS_TEAM_ID, GOOGLE_SHEETS_MAILING_LIST_ID)
 - All: `make check`
 
 ## Hard Constraints
@@ -26,6 +26,7 @@ Princeton DJ Collective website — a Next.js 16 / React 19 / TypeScript app sho
 - `npm run lint` is the canonical lint command — `npx eslint .` behaves differently
 - Past gigs Sheet columns: A=Venue, B=Event Name, C=Date (header in row 1, data from A2)
 - Team Sheet columns: A=Full Name, B=Role (header in row 1, data from A2) — only names are displayed, roles are unused
+- Mailing list Sheet: single column A=Email; appended via `appendMailingList()` in googleSheets.ts; env var GOOGLE_SHEETS_MAILING_LIST_ID
 
 ## Work Rules (WIP=1)
 - Work on exactly one feature at a time
@@ -35,7 +36,7 @@ Princeton DJ Collective website — a Next.js 16 / React 19 / TypeScript app sho
 
 ## Definition of Done
 - `npx tsc --noEmit` exits 0
-- No new ESLint errors introduced (2 existing errors in PageTransition.tsx are tracked debt)
+- No new ESLint errors introduced
 - Tested in browser at `localhost:3000`
 
 ## Session Start
