@@ -35,6 +35,16 @@
 - Rejected: Keeping the card; giving Canvas/Gigs a matching glass treatment.
 - Constraint: Track names now have no background container. Legibility depends on the `rgba(0,0,0,0.7)` video overlay remaining in place.
 
+## 2026-05-17: Archive page viewport fully locked — no page-level scroll
+- Reason: The archive page was scrollable vertically on mobile, exposing the background video edge and making the layout feel unanchored. Both the outer container and the inner content div use `overflow: hidden` so nothing scrolls at the page level.
+- Rejected: `100vh` (mobile Safari measures this with the address bar hidden, causing ~1-2% overflow when the bar reappears); `minHeight: 100vh` (allows container to grow past the viewport); `overflowY: auto` on the content div (still allowed subtle page scroll).
+- Constraint: Only the mixes tracklist and the past gigs list scroll — they use `max-h` + `overflow-y: auto` as scroll islands. The Canvas tab scrolls via its own full-bleed container. No tab may rely on page-level scroll. Bottom padding is `pb-6` on mobile (not `pb-24`) so the BackLink arrow stays in view.
+
+## 2026-05-17: MixesPlayer track list capped at 35vh with internal scroll on mobile
+- Reason: With many mixes the track list pushed the back arrow (BackLink) off screen. Capping the list at `max-h-[35vh]` with `overflow-y: auto` turns it into a scroll island, keeping the vinyl, audio controls, and back arrow always visible.
+- Rejected: Paginating the tracklist; hiding overflow with no scroll (would make tracks unreachable).
+- Constraint: Long track names are truncated at 220px on mobile (`truncate max-w-[220px]`) and unrestricted on desktop. The 35vh cap is viewport-relative so it scales across phone sizes; on very short devices (e.g. iPhone SE) this may feel tight but still fits.
+
 ---
 *Add an entry whenever a non-obvious decision is made.*
 *Format: date, what, why, what was rejected, ongoing constraint.*

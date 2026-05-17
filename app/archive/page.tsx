@@ -26,7 +26,7 @@ export default async function Archive() {
   }));
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', background: '#000', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', height: '100dvh', background: '#000', overflow: 'hidden' }}>
 
       {/* Video background */}
       <video autoPlay muted loop playsInline
@@ -38,7 +38,7 @@ export default async function Archive() {
       <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', zIndex: 1 }} />
 
       {/* Content */}
-      <div style={{ position: 'relative', zIndex: 2 }} className="flex flex-col items-center pt-28 pb-24 gap-8">
+      <div style={{ position: 'relative', zIndex: 2, height: '100%', overflow: 'hidden' }} className="flex flex-col items-center pt-28 pb-6 gap-4 md:gap-8">
         <p className="text-xl md:text-2xl font-bold">Archive</p>
         <ArchiveTabs mixes={mixes} files={files} gigs={gigs} />
         <BackLink />

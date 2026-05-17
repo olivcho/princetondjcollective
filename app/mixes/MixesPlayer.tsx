@@ -121,14 +121,14 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
     <div className="flex flex-col items-center gap-8 w-full max-w-3xl px-8 md:px-0">
       {/* Track List */}
       <div className="flex flex-col-reverse md:flex-row justify-between w-full gap-8 md:gap-24 items-center">
-        <div className="flex flex-col items-start gap-4 text-base md:text-lg font-bold w-full md:w-auto">
+        <div className="flex flex-col items-start gap-4 text-base md:text-lg font-bold w-full md:w-auto max-h-[35vh] md:max-h-none overflow-y-auto pr-1 no-scrollbar">
           {mixes.map((mix) => (
             <button
               key={mix.id}
               data-track-id={mix.id}
               onClick={() => handleTrackClick(mix)}
               className={`
-                text-left transition-all duration-200 cursor-pointer
+                text-left transition-all duration-200 cursor-pointer w-full
                 hover:text-[var(--princeton-orange)] hover:translate-x-2 hover:scale-105 focus:outline-none
                 ${currentTrack === mix.id && isPlaying ? "text-[var(--princeton-orange)] translate-x-2" : ""}
                 ${currentTrack === mix.id && !isPlaying ? "text-[var(--princeton-orange)] opacity-60" : ""}
@@ -144,10 +144,12 @@ export default function MixesPlayer({ mixes }: MixesPlayerProps) {
                   : "none"
               }}
             >
-              {currentTrack === mix.id && (
-                <span className={`mr-2 inline-block ${isPlaying ? "animate-pulse" : ""}`}>▶</span>
-              )}
-              {mix.track_name}
+              <span className="flex items-center gap-2 min-w-0">
+                {currentTrack === mix.id && (
+                  <span className={`shrink-0 ${isPlaying ? "animate-pulse" : ""}`}>▶</span>
+                )}
+                <span className="truncate max-w-[200px] md:max-w-none">{mix.track_name}</span>
+              </span>
             </button>
           ))}
         </div>

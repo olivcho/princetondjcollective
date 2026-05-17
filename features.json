@@ -53,7 +53,14 @@
       "behavior": "Archive page — Past Gigs tab fetches event list from Google Sheets",
       "verification": "npx tsc --noEmit && curl -s http://localhost:3000/archive | grep -q 'Past Gigs'",
       "state": "passing",
-      "evidence": "ac47b1e"
+      "evidence": "3cc424e"
+    },
+    {
+      "id": "F08",
+      "behavior": "Team page renders member names from Google Sheets as italic list",
+      "verification": "npx tsc --noEmit && open http://localhost:3000/team",
+      "state": "passing",
+      "evidence": "3cc424e"
     }
   ]
 }

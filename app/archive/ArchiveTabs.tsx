@@ -78,7 +78,7 @@ export default function ArchiveTabs({ mixes, files, gigs }: Props) {
 
 function MixesTab({ mixes }: { mixes: Mix[] }) {
   return (
-    <div className="flex items-center justify-center py-16 px-6">
+    <div className="flex items-center justify-center py-6 md:py-16 px-6">
       <MixesPlayer mixes={mixes} />
     </div>
   );
@@ -86,7 +86,7 @@ function MixesTab({ mixes }: { mixes: Mix[] }) {
 
 function CanvasTab({ files }: { files: MediaFile[] }) {
   return (
-    <div className="w-screen relative left-1/2 -translate-x-1/2 pt-1">
+    <div className="w-screen relative left-1/2 -translate-x-1/2 pt-1 overflow-y-auto" style={{ maxHeight: 'calc(100dvh - 280px)' }}>
       <div className="columns-2 md:columns-3 lg:columns-4 gap-[3px] p-[3px]">
         {files.map((file, i) => (
           <div
@@ -119,6 +119,11 @@ function CanvasTab({ files }: { files: MediaFile[] }) {
   );
 }
 
+function parseGigDate(date: string): number {
+  const parsed = Date.parse(`1 ${date}`);
+  return isNaN(parsed) ? 0 : parsed;
+}
+
 function GigsTab({ gigs }: { gigs: Gig[] }) {
   if (gigs.length === 0) {
     return (
@@ -128,30 +133,29 @@ function GigsTab({ gigs }: { gigs: Gig[] }) {
     );
   }
 
+  const sorted = [...gigs].sort((a, b) => parseGigDate(b.date) - parseGigDate(a.date));
+
   return (
-    <div className="flex justify-center py-12 px-6">
+    <div className="flex justify-center py-6 md:py-12 px-6">
       <div className="w-full max-w-2xl">
-        {gigs.map((gig, i) => (
+      <div className="max-h-[55vh] overflow-y-auto no-scrollbar">
+        {sorted.map((gig, i) => (
           <div
             key={i}
-            className="group flex items-baseline justify-between gap-4 py-4 border-b border-white/[0.06] cursor-default transition-all duration-200 hover:pl-3"
-            style={{ borderLeft: '2px solid transparent', transition: 'padding 0.2s ease, border-color 0.2s ease' }}
-            onMouseEnter={e => (e.currentTarget.style.borderLeftColor = 'var(--princeton-orange)')}
-            onMouseLeave={e => (e.currentTarget.style.borderLeftColor = 'transparent')}
+            className="group flex items-baseline justify-between gap-4 py-4 border-b border-white/[0.06] cursor-default"
           >
-            {/* Event name + recent badge */}
             <div className="flex items-center gap-3 min-w-0">
               <span className="font-bold italic truncate" style={{ fontFamily: 'var(--font-playfair)', fontSize: '19px' }}>
                 {gig.eventName}
               </span>
             </div>
-            {/* Venue + date */}
-            <div className="flex items-baseline gap-4 shrink-0 text-sm">
-              <span className="text-white/70 hidden sm:block">{gig.venue}</span>
+            <div className="flex items-baseline gap-4 shrink-0 text-medium">
+              <span className="text-white/100">{gig.venue}</span>
               <span className="text-white/55 text-xs font-bold tracking-widest uppercase tabular-nums">{gig.date}</span>
             </div>
           </div>
         ))}
+      </div>
       </div>
     </div>
   );

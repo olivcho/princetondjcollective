@@ -24,7 +24,8 @@ Princeton DJ Collective website — a Next.js 16 / React 19 / TypeScript app sho
 - Google Drive auth is in `app/utils/googleDrive.ts`; Sheets auth is in `app/utils/googleSheets.ts` — don't create new auth instances
 - No test framework is set up — verification is typecheck + lint + manual browser testing
 - `npm run lint` is the canonical lint command — `npx eslint .` behaves differently
-- Past gigs Sheet columns are: A=Venue, B=Event Name, C=Date (row 1 is header, data starts at A2)
+- Past gigs Sheet columns: A=Venue, B=Event Name, C=Date (header in row 1, data from A2)
+- Team Sheet columns: A=Full Name, B=Role (header in row 1, data from A2) — only names are displayed, roles are unused
 
 ## Work Rules (WIP=1)
 - Work on exactly one feature at a time
