@@ -1,0 +1,54 @@
+{
+  "wip_limit": 1,
+  "rules": [
+    "Only one feature may be 'active' at a time",
+    "State cannot transition to 'passing' without npx tsc --noEmit exiting 0",
+    "Once 'passing', state cannot regress"
+  ],
+  "features": [
+    {
+      "id": "F01",
+      "behavior": "Homepage renders with video background, gradient canvas scroll, and team section",
+      "verification": "npx tsc --noEmit && open http://localhost:3000",
+      "state": "passing",
+      "evidence": "66ea9b6"
+    },
+    {
+      "id": "F02",
+      "behavior": "Canvas/gallery page fetches and displays media files from Google Drive",
+      "verification": "npx tsc --noEmit && curl -s http://localhost:3000/api/files | grep -q 'files'",
+      "state": "active",
+      "evidence": null,
+      "notes": "Migrating from UploadThing to Google Drive API — in progress"
+    },
+    {
+      "id": "F03",
+      "behavior": "Mixes player fetches tracks dynamically from Google Drive and plays audio",
+      "verification": "npx tsc --noEmit && curl -s http://localhost:3000/api/mixes | grep -q 'tracks'",
+      "state": "active",
+      "evidence": null,
+      "notes": "New api/mixes/route.ts needed; mixes/page.tsx to fetch dynamically from Drive"
+    },
+    {
+      "id": "F04",
+      "behavior": "Booking page renders with contact email link",
+      "verification": "npx tsc --noEmit && open http://localhost:3000/booking",
+      "state": "passing",
+      "evidence": "66ea9b6"
+    },
+    {
+      "id": "F05",
+      "behavior": "Education page renders with program schedule and weekly meeting details",
+      "verification": "npx tsc --noEmit && open http://localhost:3000/education",
+      "state": "passing",
+      "evidence": "66ea9b6"
+    },
+    {
+      "id": "F06",
+      "behavior": "Responsive nav works on mobile with compact dropdown",
+      "verification": "npx tsc --noEmit && open http://localhost:3000",
+      "state": "passing",
+      "evidence": "66ea9b6"
+    }
+  ]
+}

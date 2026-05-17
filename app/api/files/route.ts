@@ -1,51 +1,18 @@
-import { utapi } from "@/app/utils/uploadthing";
-import { NextResponse } from "next/server";
-
-// Custom display order — files listed here appear first, in this order.
-// Files not listed appear after in their default order.
-// Add a name to EXCLUDED to hide it from the site.
-const CUSTOM_ORDER = ["7.jpeg", "8.jpeg", "vid1.mp4", "14.jpeg", "12.jpg", "vid2.mp4", "10.jpeg", "2.jpeg", "4.jpeg", "9.jpeg", "6.jpeg", "11.jpeg", "5.jpeg", "1.jpeg", "3.jpeg"];
-const EXCLUDED = ["13.jpeg"];
+import { listDriveFiles } from '@/app/utils/googleDrive';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
   try {
-    const { files } = await utapi.listFiles();
-
-    const filesWithUrls = files
-      .filter((file) => !EXCLUDED.includes(file.name))
-      .map((file) => ({
-        key: file.key,
-        name: file.name,
-        url: `https://utfs.io/f/${file.key}`,
-        isVideo: /\.(mp4|webm|mov|avi)$/i.test(file.name),
-      }))
-      .sort((a, b) => {
-        const ai = CUSTOM_ORDER.indexOf(a.name);
-        const bi = CUSTOM_ORDER.indexOf(b.name);
-        if (ai === -1 && bi === -1) return 0;
-        if (ai === -1) return 1;
-        if (bi === -1) return -1;
-        return ai - bi;
-      });
-
-    return NextResponse.json({ files: filesWithUrls });
-  } catch (error) {
-    console.error("Error fetching files:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch files" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function DELETE() {
-  try {
-    await utapi.deleteFiles(EXCLUDED.map(name => {
-      // We need keys not names — this is handled client-side via key param
-      return name;
+    const files = await listDriveFiles(process.env.GOOGLE_DRIVE_CANVAS_FOLDER_ID!);
+    const mediaFiles = files.map(file => ({
+      key: file.id!,
+      name: file.name!,
+      url: `/api/media/${file.id}`,
+      isVideo: /^video\//i.test(file.mimeType ?? ''),
     }));
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ error: "Failed to delete" }, { status: 500 });
+    return NextResponse.json({ files: mediaFiles });
+  } catch (err) {
+    console.error('Error fetching canvas files:', err);
+    return NextResponse.json({ error: 'Failed to fetch files' }, { status: 500 });
   }
 }

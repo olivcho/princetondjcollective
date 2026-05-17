@@ -48,7 +48,7 @@ export default function CanvasPage() {
     return (
       <div className="fixed inset-0 bg-black flex flex-col items-center justify-center gap-4">
         <div className="text-white/50 text-xs tracking-widest uppercase">Canvas unavailable</div>
-        <div className="text-white/30 text-xs">Missing API credentials — add UPLOADTHING_TOKEN to .env.local</div>
+        <div className="text-white/30 text-xs">Missing API credentials — check Google Drive env vars in .env.local</div>
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2">
           <BackLink />
         </div>

@@ -1,19 +1,23 @@
 import MixesPlayer from "./MixesPlayer";
 import BackLink from "../components/BackLink";
-
-const mixes = [
-  { id: '1', track_name: 'Alchemy',             track_url: '' },
-  { id: '2', track_name: 'Corleone',            track_url: '' },
-  { id: '3', track_name: 'Against The Machine', track_url: '' },
-  { id: '4', track_name: 'Shake It Off',        track_url: '' },
-  { id: '5', track_name: 'Sunset',              track_url: '' },
-  { id: '6', track_name: 'Still Want Me',       track_url: '' },
-  { id: '7', track_name: 'Jazz Club',           track_url: '' },
-  { id: '8', track_name: 'Config',              track_url: '' },
-  { id: '9', track_name: 'Hands Up',            track_url: '' },
-];
+import { listDriveFiles } from "../utils/googleDrive";
 
 export default async function Mixes() {
+  let mixes: { id: string; track_name: string; track_url: string }[] = [];
+
+  try {
+    const files = await listDriveFiles(process.env.GOOGLE_DRIVE_MIXES_FOLDER_ID!);
+    mixes = files
+      .filter(f => /^audio\//i.test(f.mimeType ?? '') || /\.mp3$/i.test(f.name ?? ''))
+      .map(file => ({
+        id: file.id!,
+        track_name: file.name!.replace(/\.[^.]+$/, ''),
+        track_url: `/api/media/${file.id}`,
+      }));
+  } catch (err) {
+    console.error('Error fetching mixes:', err);
+  }
+
   return (
     <div style={{ position: 'relative', minHeight: '100vh', background: '#000', overflow: 'hidden' }}>
 
