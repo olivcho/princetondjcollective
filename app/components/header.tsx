@@ -9,9 +9,8 @@ export default function Header() {
 
   const navLinks = [
     { href: "/", label: "About" },
-    { href: "/canvas", label: "Canvas" },
+    { href: "/archive", label: "Archive" },
     { href: "/education", label: "Education" },
-    { href: "/mixes", label: "Mixes" },
     { href: "/booking", label: "Booking" },
   ];
 

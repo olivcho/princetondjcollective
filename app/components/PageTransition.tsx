@@ -29,7 +29,8 @@ export function TransitionProvider({ children }: { children: React.ReactNode }) 
   const [pendingHref, setPendingHref] = useState<string | null>(null);
 
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => setIsVisible(true), 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   const startTransition = useCallback(
@@ -64,7 +65,8 @@ export default function PageTransition({ children }: { children: React.ReactNode
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    setIsVisible(true);
+    const timer = setTimeout(() => setIsVisible(true), 0);
+    return () => clearTimeout(timer);
   }, [pathname]);
 
   return (

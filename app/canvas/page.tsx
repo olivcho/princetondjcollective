@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import BackLink from '../components/BackLink';
 
 interface MediaFile {
@@ -71,11 +72,12 @@ export default function CanvasPage() {
                 className="w-full h-auto block"
               />
             ) : (
-              <img
+              <Image
                 src={file.url}
                 alt={file.name}
+                width={800}
+                height={600}
                 className="w-full h-auto block"
-                loading="lazy"
               />
             )}
           </div>

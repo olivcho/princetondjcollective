@@ -17,14 +17,14 @@ Princeton DJ Collective website — a Next.js 16 / React 19 / TypeScript app sho
 - All: `make check`
 
 ## Hard Constraints
-- Do NOT commit `.env.local` — it contains UploadThing and Supabase secrets
+- Do NOT commit `.env.local` — it contains Google service account private key
 - All pages use `position: relative, zIndex` layering over a `<video>` background — maintain this pattern
 - Use `BackLink` component (not Next.js `<Link>`) for back navigation on inner pages
-- UploadThing file ordering is controlled by `CUSTOM_ORDER` array in `app/api/files/route.ts`
-- Supabase client is initialized in `app/utils/supabase.ts` — import from there, don't create new clients
+- All media (images, video, audio) is proxied through `/api/media/[fileId]` — do not use Drive URLs directly
+- Google Drive auth is in `app/utils/googleDrive.ts`; Sheets auth is in `app/utils/googleSheets.ts` — don't create new auth instances
 - No test framework is set up — verification is typecheck + lint + manual browser testing
-- Mixes track URLs are intentionally empty (pending audio hosting decision)
 - `npm run lint` is the canonical lint command — `npx eslint .` behaves differently
+- Past gigs Sheet columns are: A=Venue, B=Event Name, C=Date (row 1 is header, data starts at A2)
 
 ## Work Rules (WIP=1)
 - Work on exactly one feature at a time

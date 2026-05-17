@@ -8,26 +8,24 @@
   "features": [
     {
       "id": "F01",
-      "behavior": "Homepage renders with video background, gradient canvas scroll, and team section",
+      "behavior": "Homepage renders with video background and team section",
       "verification": "npx tsc --noEmit && open http://localhost:3000",
       "state": "passing",
       "evidence": "66ea9b6"
     },
     {
       "id": "F02",
-      "behavior": "Canvas/gallery page fetches and displays media files from Google Drive",
+      "behavior": "Archive page — Canvas tab displays media files from Google Drive",
       "verification": "npx tsc --noEmit && curl -s http://localhost:3000/api/files | grep -q 'files'",
-      "state": "active",
-      "evidence": null,
-      "notes": "Migrating from UploadThing to Google Drive API — in progress"
+      "state": "passing",
+      "evidence": "ac47b1e"
     },
     {
       "id": "F03",
-      "behavior": "Mixes player fetches tracks dynamically from Google Drive and plays audio",
+      "behavior": "Archive page — Mixes tab fetches tracks from Google Drive and plays audio",
       "verification": "npx tsc --noEmit && curl -s http://localhost:3000/api/mixes | grep -q 'tracks'",
-      "state": "active",
-      "evidence": null,
-      "notes": "New api/mixes/route.ts needed; mixes/page.tsx to fetch dynamically from Drive"
+      "state": "passing",
+      "evidence": "ac47b1e"
     },
     {
       "id": "F04",
@@ -49,6 +47,13 @@
       "verification": "npx tsc --noEmit && open http://localhost:3000",
       "state": "passing",
       "evidence": "66ea9b6"
+    },
+    {
+      "id": "F07",
+      "behavior": "Archive page — Past Gigs tab fetches event list from Google Sheets",
+      "verification": "npx tsc --noEmit && curl -s http://localhost:3000/archive | grep -q 'Past Gigs'",
+      "state": "passing",
+      "evidence": "ac47b1e"
     }
   ]
 }

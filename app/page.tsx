@@ -55,7 +55,7 @@ export default function Home() {
         <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.62)', zIndex: 1 }} />
 
         {/* Hero content */}
-        <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
+        {/* <div style={{ position: 'relative', zIndex: 2, height: '100%', display: 'flex', flexDirection: 'column' }}>
           <div className="pb-8" style={{ marginTop: 'auto' }}>
             <div className="border-t border-white/15 pt-5">
               <Marquee autoFill speed={18} className="text-white/45 text-xs font-semibold tracking-widest uppercase">
@@ -63,7 +63,7 @@ export default function Home() {
               </Marquee>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
 
     </div>
