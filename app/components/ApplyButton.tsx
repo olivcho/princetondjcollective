@@ -6,36 +6,27 @@ export default function ApplyButton() {
     <div
       style={{
         pointerEvents: 'auto',
-        marginTop: 0,
-        maxWidth: '350px',
-        margin: '0 auto',
+        display: 'flex',
+        justifyContent: 'center',
         width: '100%',
       }}
     >
-      <p
-        style={{
-          color: 'rgba(255,255,255,0.65)',
-          fontSize: 'clamp(0.75rem, 1.1vw, 0.85rem)',
-          marginBottom: '0.6rem',
-          letterSpacing: '0.06em',
-          textTransform: 'uppercase',
-        }}
-      >
-        Stay connected
-      </p>
       <a
         href={APPLY_URL}
         target="_blank"
         rel="noopener noreferrer"
         style={{
-          display: 'inline-block',
-          padding: '0.55rem 1.35rem',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          textAlign: 'center',
+          lineHeight: 1,
+          padding: '0.7rem 1.35rem',
           background: '#fff',
           color: '#000',
           borderRadius: '4px',
           fontSize: '0.85rem',
           fontWeight: 600,
-          letterSpacing: '0.04em',
           textDecoration: 'none',
         }}
       >
