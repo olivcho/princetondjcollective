@@ -1,5 +1,5 @@
 import BackLink from "../components/BackLink";
-import MailingListForm from "../components/MailingListForm";
+import ApplyButton from "../components/ApplyButton";
 
 export default function Education() {
   return (
@@ -23,10 +23,10 @@ export default function Education() {
               At the end of the program, you&apos;ll have the opportunity to complete a skill assessment. Those who pass will be invited to join our &quot;gig group&quot; and perform at campus events.
             </p>
             <p>
-              Dates and times for Fall 2026 will be announced soon. In the meantime, sign up for our mailing list to stay updated.
+              Dates and times for Fall 2026 will be announced soon. Apply below to join.
             </p>
           </div>
-          <div style={{ marginTop: '-1rem', width: '100%' }}><MailingListForm /></div>
+          <div style={{ marginTop: '-1rem', width: '100%' }}><ApplyButton /></div>
           <BackLink />
         </div>
       </div>    </div>

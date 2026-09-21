@@ -50,6 +50,11 @@
 - Rejected: Mailchimp embed (extra third-party dependency); Supabase (already removed).
 - Constraint: `GOOGLE_SHEETS_MAILING_LIST_ID` must be set in `.env.local` and Vercel env vars to `1IOSq5_4qK-ZPw9nfNSiWUzgJBQS94v_YGeDekXi4Wt8`. The sheet must be shared with the service account. The googleSheets.ts auth scope was upgraded from `spreadsheets.readonly` to `spreadsheets` to allow appends. The form is a `'use client'` component (`MailingListForm.tsx`) mounted inside the `pointerEvents: none` homepage overlay — it sets `pointerEvents: auto` on itself.
 
+## 2026-09-21: Homepage and education CTAs link to the application form
+- Reason: Joining the collective now goes through the Google Form application instead of an email mailing list. The homepage and education page show an Apply link to that form, with no email field or “Stay connected” label.
+- Rejected: Keeping the email field and adding Apply beside it (two competing actions); embedding the form iframe (heavier, and the form already lives on Google).
+- Constraint: The homepage content overlay uses `pointerEvents: none`, so `ApplyButton` sets `pointerEvents: auto` on itself. The `/api/subscribe` route is unused by the UI but still appends to the mailing-list sheet if called.
+
 ---
 *Add an entry whenever a non-obvious decision is made.*
 *Format: date, what, why, what was rejected, ongoing constraint.*

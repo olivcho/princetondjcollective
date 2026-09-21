@@ -1,4 +1,4 @@
-import MailingListForm from './components/MailingListForm';
+import ApplyButton from './components/ApplyButton';
 
 export default function Home() {
   return (
@@ -80,7 +80,7 @@ export default function Home() {
             We offer a free beginner-friendly education program, connect club members to our campus-wide gig network, and foster a supportive community of music lovers and creators.
           </p>
 
-          <div className="opacity-0" style={{ marginTop: '1.75rem', animation: 'fadeIn 0.5s ease-out 0.9s forwards' }}><MailingListForm /></div>
+          <div className="opacity-0" style={{ marginTop: '1.75rem', animation: 'fadeIn 0.5s ease-out 0.9s forwards' }}><ApplyButton /></div>
         </div>
       </div>
 
