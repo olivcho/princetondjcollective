@@ -27,7 +27,7 @@
 - [x] Team page — names from Google Sheets, Playfair italic list (7c8d0a9)
 - [x] Archive viewport lock + MixesPlayer scroll island on mobile (7c8d0a9)
 - [x] Mailing list form on homepage — Google Sheets append via /api/subscribe
-- [x] Education page — in-browser Crossfader beginner tutorials
+- [x] Education page — in-browser lesson library (recommended order plus topic sections)
 
 ## In Progress
 - none

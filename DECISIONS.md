@@ -55,10 +55,10 @@
 - Rejected: Keeping the email field and adding Apply beside it (two competing actions); embedding the form iframe (heavier, and the form already lives on Google).
 - Constraint: The homepage content overlay uses `pointerEvents: none`, so `ApplyButton` sets `pointerEvents: auto` on itself. The `/api/subscribe` route is unused by the UI but still appends to the mailing-list sheet if called.
 
-## 2026-10-05: Education page embeds Crossfader’s free beginner series
-- Reason: The weekly education sessions are built around short tutorials. Git history and leftover components have no Crossfader embed — the education page has only ever been program copy — so the free Crossfader “Beginner DJ Lessons” series (parts 0–5) is embedded with a YouTube player that stays on the page.
-- Rejected: Linking out to YouTube or wearecrossfader.co.uk (leaves the site); embedding the paid Crossfader course app (login-gated, not a public embed).
-- Constraint: Lesson ids are the official Crossfader YouTube uploads. Playback uses `youtube-nocookie.com` iframes. The education background video and overlay are `position: fixed` so the lesson list can scroll without stretching the background; the page shell stays `position: relative` with content at `zIndex: 2`.
+## 2026-10-05: Education page is an in-page lesson library
+- Reason: The education page is now the lessons themselves, for a mixed beginner and intermediate audience. Git history never had a Crossfader embed to restore. Twenty public YouTube tutorials cover beatmatching and transitions, EQ, harmonic mixing, and looping. They come from Crossfader, Club Ready DJ School, DJ Carlo, DJ Phil Harris, and DJ TLM TV, chosen for views, like counts, like-to-view ratio, recency where the skill or software moves, and whether the video is a technique lesson rather than a short, review, or set.
+- Rejected: The Crossfader laptop beginner series alone (too narrow and too basic for this brief); one iframe per lesson on screen at once (twenty players is a poor page); linking out to YouTube; videos whose oEmbed request failed, which is how YouTube signals that embedding is disabled.
+- Constraint: Playback uses one `youtube-nocookie.com` iframe that swaps to the selected lesson, so every lesson still plays on the page. Recommended order is the array order in `EducationLibrary.tsx`; topic tabs filter that same order and keep the step numbers. The background video and overlay are `position: fixed` so the list can scroll; the page shell stays `position: relative` with content at `zIndex: 2`. The Apply link stays.
 
 ---
 *Add an entry whenever a non-obvious decision is made.*
