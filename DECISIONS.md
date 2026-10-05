@@ -55,6 +55,11 @@
 - Rejected: Keeping the email field and adding Apply beside it (two competing actions); embedding the form iframe (heavier, and the form already lives on Google).
 - Constraint: The homepage content overlay uses `pointerEvents: none`, so `ApplyButton` sets `pointerEvents: auto` on itself. The `/api/subscribe` route is unused by the UI but still appends to the mailing-list sheet if called.
 
+## 2026-10-05: Education page embeds Crossfader’s free beginner series
+- Reason: The weekly education sessions are built around short tutorials. Git history and leftover components have no Crossfader embed — the education page has only ever been program copy — so the free Crossfader “Beginner DJ Lessons” series (parts 0–5) is embedded with a YouTube player that stays on the page.
+- Rejected: Linking out to YouTube or wearecrossfader.co.uk (leaves the site); embedding the paid Crossfader course app (login-gated, not a public embed).
+- Constraint: Lesson ids are the official Crossfader YouTube uploads. Playback uses `youtube-nocookie.com` iframes. The education background video and overlay are `position: fixed` so the lesson list can scroll without stretching the background; the page shell stays `position: relative` with content at `zIndex: 2`.
+
 ---
 *Add an entry whenever a non-obvious decision is made.*
 *Format: date, what, why, what was rejected, ongoing constraint.*
