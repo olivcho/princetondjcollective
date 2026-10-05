@@ -36,7 +36,7 @@
     },
     {
       "id": "F05",
-      "behavior": "Education page renders with program schedule and weekly meeting details",
+      "behavior": "Education page plays a curated in-browser lesson library with topic sections and a recommended order",
       "verification": "npx tsc --noEmit && open http://localhost:3000/education",
       "state": "passing",
       "evidence": "66ea9b6"

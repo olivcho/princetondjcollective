@@ -1,8 +1,8 @@
 # PROGRESS.md
 
 ## Current State
-- Branch: main
-- Latest commit: 7c8d0a9 (uncommitted changes present — mailing list form)
+- Branch: cursor/education-crossfader-tutorials-d378
+- Latest commit: Crossfader tutorials on the education page
 - Build: unknown (requires env vars — run `npm run build` locally to verify)
 - Tests: 0 found — no test framework set up
 - Typecheck: passing (`npx tsc --noEmit` exits 0)
@@ -26,7 +26,8 @@
 - [x] Nav consolidated: Canvas + Mixes → Archive (3cc424e)
 - [x] Team page — names from Google Sheets, Playfair italic list (7c8d0a9)
 - [x] Archive viewport lock + MixesPlayer scroll island on mobile (7c8d0a9)
-- [x] Mailing list form on homepage — Google Sheets append via /api/subscribe (uncommitted)
+- [x] Mailing list form on homepage — Google Sheets append via /api/subscribe
+- [x] Education page — filmstrip lesson viewer (player, topic tabs, thumbnail sidebar)
 
 ## In Progress
 - none

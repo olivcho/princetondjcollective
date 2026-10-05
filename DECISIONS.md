@@ -55,6 +55,11 @@
 - Rejected: Keeping the email field and adding Apply beside it (two competing actions); embedding the form iframe (heavier, and the form already lives on Google).
 - Constraint: The homepage content overlay uses `pointerEvents: none`, so `ApplyButton` sets `pointerEvents: auto` on itself. The `/api/subscribe` route is unused by the UI but still appends to the mailing-list sheet if called.
 
+## 2026-10-05: Education page is a filmstrip lesson viewer
+- Reason: The page is the lessons. Twenty public YouTube tutorials cover beatmatching and transitions, EQ, harmonic mixing, and looping, from Crossfader, Club Ready DJ School, DJ Carlo, DJ Phil Harris, and DJ TLM TV. They were kept for views, likes, like-to-view ratio, recency where it mattered, and whether the video actually teaches the skill. Oliver chose the filmstrip layout: a large player beside a scrollable column of stills, with topic tabs and an orange active card.
+- Rejected: A text playlist and a curriculum accordion; the Apply link and program copy on this page; one iframe per lesson; linking out to YouTube; videos whose oEmbed request failed.
+- Constraint: One `youtube-nocookie.com` iframe swaps to the selected lesson. Recommended order is the array in `EducationLibrary.tsx`; topic tabs filter it and keep the step numbers. Stills are YouTube `i.ytimg.com` thumbnails, not Drive files. The viewer uses a system sans; the global header stays Playfair. The page shell stays `position: relative` with the background video fixed and content at `zIndex: 2`. The lesson surface is opaque so titles are not set on the moving video. BackLink stays under the player. The homepage Apply link is unchanged.
+
 ---
 *Add an entry whenever a non-obvious decision is made.*
 *Format: date, what, why, what was rejected, ongoing constraint.*
